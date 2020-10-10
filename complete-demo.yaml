@@ -121,13 +121,13 @@ kind: Deployment
 metadata:
   name: catalogue-db
   labels:
-    app: catalouge-db
+    app: catalogue-db
   namespace: sock-shop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: catalouge-db
+      app: catalogue-db
   template:
     metadata:
       labels:
