@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: carts-db
   labels:
-    app: carts-db
+    name: carts-db
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: carts-db
+      name: carts-db
+  replicas: 1
   template:
     metadata:
       labels:
-        app: carts-db
+        name: carts-db
     spec:
       containers:
       - name: carts-db
@@ -60,17 +60,17 @@ kind: Deployment
 metadata:
   name: carts
   labels:
-    app: carts
+    name: carts
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: carts
+      name: carts
+  replicas: 1
   template:
     metadata:
       labels:
-        app: carts
+        name: carts
     spec:
       containers:
       - name: carts
@@ -121,17 +121,17 @@ kind: Deployment
 metadata:
   name: catalogue-db
   labels:
-    app: catalogue-db
+    name: catalogue-db
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: catalogue-db
+      name: catalogue-db
+  replicas: 1
   template:
     metadata:
       labels:
-        app: catalogue-db
+        name: catalogue-db
     spec:
       containers:
       - name: catalogue-db
@@ -167,17 +167,17 @@ kind: Deployment
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: catalogue
+      name: catalogue
+  replicas: 1
   template:
     metadata:
       labels:
-        app: catalogue
+        name: catalogue
     spec:
       containers:
       - name: catalogue
@@ -215,18 +215,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-end
-  labels:
-    apps: front-end
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: front-end
+      name: front-end
+  replicas: 1
   template:
     metadata:
       labels:
-        app: front-end
+        name: front-end
     spec:
       containers:
       - name: front-end
@@ -268,17 +266,17 @@ kind: Deployment
 metadata:
   name: orders-db
   labels:
-    app: orders-db
+    name: orders-db
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: orders-db
+      name: orders-db
+  replicas: 1
   template:
     metadata:
       labels:
-        app: orders-db
+        name: orders-db
     spec:
       containers:
       - name: orders-db
@@ -325,17 +323,17 @@ kind: Deployment
 metadata:
   name: orders
   labels:
-    app: orders
+    name: orders
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: orders
+      name: orders
+  replicas: 1
   template:
     metadata:
       labels:
-        app: orders
+        name: orders
     spec:
       containers:
       - name: orders
@@ -386,17 +384,17 @@ kind: Deployment
 metadata:
   name: payment
   labels:
-    app: payment
+    name: payment
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: payment
+      name: payment
+  replicas: 1
   template:
     metadata:
       labels:
-        app: payment
+        name: payment
     spec:
       containers:
       - name: payment
@@ -435,17 +433,17 @@ kind: Deployment
 metadata:
   name: queue-master
   labels:
-    app: queue-master
+    name: queue-master
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: queue-master
+      name: queue-master
+  replicas: 1
   template:
     metadata:
       labels:
-        app: queue-master
+        name: queue-master
     spec:
       containers:
       - name: queue-master
@@ -477,17 +475,17 @@ kind: Deployment
 metadata:
   name: rabbitmq
   labels:
-    app: rabbitmq
+    name: rabbitmq
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: rabbitmq
+      name: rabbitmq
+  replicas: 1
   template:
     metadata:
       labels:
-        app: rabbitmq
+        name: rabbitmq
     spec:
       containers:
       - name: rabbitmq
@@ -527,17 +525,17 @@ kind: Deployment
 metadata:
   name: shipping
   labels:
-    app: shipping
+    name: shipping
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: shipping
+      name: shipping
+  replicas: 1
   template:
     metadata:
       labels:
-        app: shipping
+        name: shipping
     spec:
       containers:
       - name: shipping
@@ -588,17 +586,17 @@ kind: Deployment
 metadata:
   name: user-db
   labels:
-    app: user-db
+    name: user-db
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: user-db
+      name: user-db
+  replicas: 1
   template:
     metadata:
       labels:
-        app: user-db
+        name: user-db
     spec:
       containers:
       - name: user-db
@@ -645,17 +643,17 @@ kind: Deployment
 metadata:
   name: user
   labels:
-    app: user
+    name: user
   namespace: sock-shop
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: user
+      name: user
+  replicas: 1
   template:
     metadata:
       labels:
-        app: user
+        name: user
     spec:
       containers:
       - name: user
