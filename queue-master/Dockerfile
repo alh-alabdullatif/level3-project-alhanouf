@@ -1,4 +1,22 @@
+# syntax=docker/dockerfile:experimental
+FROM maven:3-jdk-11 AS build 
+
+#WORKDIR /usr/src/app
+#COPY *.jar ./app.jar
+
+WORKDIR /tmp-q
+COPY src /tmp-q/src 
+COPY pom.xml /tmp-q
+
+RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+
+#FROM weaveworksdemos/msd-java:jre-latest
+
+#ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+
 FROM java:openjdk-8-alpine
+
+COPY --from=build /tmp-q/target/queue-master.jar /queue-master.jar
 
 ENV	SERVICE_USER=myuser \
 	SERVICE_UID=10001 \
@@ -13,11 +31,11 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 	ln -s /usr/lib/jvm/java-1.8-openjdk/lib/amd64/jli/libjli.so /lib/libjli.so && \
 	setcap 'cap_net_bind_service=+ep' $(readlink -f $(which java))
 
-WORKDIR /usr/src/app
-COPY *.jar ./app.jar
+#WORKDIR /usr/src/app
+#COPY *.jar ./app.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ../queue-master.jar
 
 USER ${SERVICE_USER}
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./app.jar", "--port=80"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","../queue-master.jar", "--port=80"]
