@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM maven:3-jdk-11 AS build 
+FROM maven:3-jdk-8 AS build 
 
 #WORKDIR /usr/src/app
 #COPY *.jar ./app.jar
@@ -8,7 +8,7 @@ WORKDIR /tmp-q
 COPY src /tmp-q/src 
 COPY pom.xml /tmp-q
 
-RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+RUN mvn clean package
 
 #FROM weaveworksdemos/msd-java:jre-latest
 
