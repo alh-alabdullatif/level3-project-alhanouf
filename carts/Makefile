@@ -1,6 +1,5 @@
 build:
 	DOCKER_BUILDKIT=1 docker build --progress=plain --tag alhanouf1/carts .
-
 run:
 	docker run --name carts -it --rm -p 8081:80 alhanouf1/carts
 debug:
