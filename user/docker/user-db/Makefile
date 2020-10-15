@@ -8,4 +8,3 @@ debug:
 
 stop:
 	docker container stop user-db
-
