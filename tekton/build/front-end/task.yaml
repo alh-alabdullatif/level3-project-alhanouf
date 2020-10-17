@@ -27,7 +27,6 @@ spec:
   steps:
   - name: build-and-push
     workingDir: /workspace/level3-project-alhanouf/tekton/build/front-end
-front-end
     image: $(params.BUILDER_IMAGE)
     # specifying DOCKER_CONFIG is required to allow kaniko to detect docker credential
     # https://github.com/tektoncd/pipeline/pull/706
