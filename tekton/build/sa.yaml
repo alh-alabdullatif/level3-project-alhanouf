@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: alhanouf-sec
+secrets:
+  - name: alhanouf-git-sec
+  - name: alhanouf-docker-sec

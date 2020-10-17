@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: front-end-build-taskrun
+spec:
+  serviceAccountName: alhanouf-sec
+  taskRef:
+    name: front-end-build
+  params:
+  - name: IMAGE
+    value: "alhanouf1/front-end-build"
+  resources:
+    inputs:
+    - name: front-end-build
+      resourceRef:
+        name: front-end-build

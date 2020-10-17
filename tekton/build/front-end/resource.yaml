@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: front-end
+spec:
+  type: git
+  params:
+    - name: revision
+      value: develop
+    - name: url
+      value: https://github.com/alh-alabdullatif/level3-project-alhanouf/front-end
