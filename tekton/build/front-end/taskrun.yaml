@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: alhanouf-sec
   taskRef:
-    name: front-end-build
+    name: front-end-push
   params:
   - name: IMAGE
     value: "alhanouf1/front-end-build"
