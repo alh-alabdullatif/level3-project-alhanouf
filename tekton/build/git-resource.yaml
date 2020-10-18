@@ -5,8 +5,7 @@ metadata:
 spec:
   type: git
   params:
-    - name: url
-      value: https://github.com/alh-alabdullatif/level3-project-alhanouf.git
     - name: revision
       value: develop
-
+    - name: url
+      value: https://github.com/alh-alabdullatif/level3-project-alhanouf.git
