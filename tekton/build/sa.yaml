@@ -3,4 +3,4 @@ kind: ServiceAccount
 metadata:
   name: alhanouf-sec
 secrets:
-  - name: alhanouf-docker-sec
+  - name: docker-seceret
