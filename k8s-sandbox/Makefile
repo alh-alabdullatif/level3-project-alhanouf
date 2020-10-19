@@ -1,6 +1,6 @@
 .PHONY: up down init cluster-up install uninstall logs repos namespaces cluster-down clean provision
 
-up: cluster-up init
+up: cluster-up init install-cicd install-tkn-cli 
 
 down: cluster-down
 
