@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: ship-build-taskrun
+spec:
+  serviceAccountName: alhanouf-sec
+  taskRef:
+    name: ship-build-task
+  params:
+  - name: IMAGE
+    value: "alhanouf1/shipping-build"
+  resources:
+    inputs:
+    - name: git-resource
+      resourceRef:
+        name: git-resource

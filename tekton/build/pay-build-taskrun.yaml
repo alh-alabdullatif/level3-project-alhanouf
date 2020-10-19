@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: pay-build-taskrun
+spec:
+  serviceAccountName: alhanouf-sec
+  taskRef:
+    name: pay-build-task
+  params:
+  - name: IMAGE
+    value: "payment-build"
+  resources:
+    inputs:
+    - name: git-resource
+      resourceRef:
+        name: git-resource
