@@ -5,7 +5,7 @@ WORKDIR /tmp-cart
 COPY src /tmp-cart/src
 COPY pom.xml /tmp-cart
 #RUN mvn clean package
-RUN --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+RUN mvn clean package
 
 #FROM adoptopenjdk/openjdk11:alpine
 FROM weaveworksdemos/msd-java:jre-latest
