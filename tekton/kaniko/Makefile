@@ -1,7 +1,7 @@
-.PHONY: up ord-pr-logs cat-pr-logs create-cat delete-cat create-front-end delete-front-end
+.PHONY: up create-cat delete-cat ord-pr-logs cat-pr-logs create-cat delete-cat create-front-end delete-front-end
 
 up:
-	 k create -f sa.yaml -f rbac.yaml -f kaniko-source-pvc.yaml -f git-clone-task.yaml
+	 kubectl create -f sa.yaml -f rbac.yaml -f kaniko-source-pvc.yaml -f git-clone-task.yaml
 
 docker-login:
 	 docker login -u alhanouf1
@@ -30,9 +30,9 @@ user-pr-logs:
 	tkn pr logs -f user-pipeline-run
 
 create-cat:
-	k create -f cat-build-task.yaml -f cat-pipeline.yaml
+	kubectl create -f cat-build-task.yaml -f cat-db-build-task.yaml -f cat-pipeline.yaml
 delete-cat:
-	k delete -f cat-build-task.yaml -f cat-pipeline.yaml
+	kubectl delete -f cat-build-task.yaml -f cat-db-build-task.yaml -f cat-pipeline.yaml
 
 create-front-end:
 	k create -f fe-build-task.yaml -f fe-pipeline.yaml
