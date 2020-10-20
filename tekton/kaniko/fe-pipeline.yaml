@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: kaniko-test-pipeline
+  name: fe-pipeline
 spec:
   workspaces:
   - name: shared-workspace
@@ -23,9 +23,9 @@ spec:
       value: ""
     - name: deleteExisting
       value: "true"
-  - name: kaniko
+  - name: fe-build-task
     taskRef:
-      name: kaniko
+      name: fe-build-task
     runAfter:
     - fetch-repository
     workspaces:
@@ -38,10 +38,10 @@ spec:
       value: "--skip-tls-verify"
   - name: verify-digest
     runAfter:
-    - kaniko
+    - fe-build-task
     params:
     - name: digest
-      value: $(tasks.kaniko.results.IMAGE-DIGEST)
+      value: $(tasks.fe-build-task.results.IMAGE-DIGEST)
     taskSpec:
       params:
       - name: digest
@@ -58,11 +58,11 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: kaniko-test-pipeline-run
+  name: fe-pipeline-run
 spec:
   serviceAccountName: alhanouf-sec
   pipelineRef:
-    name: kaniko-test-pipeline
+    name: fe-pipeline
   params:
   - name: image
     value: alhanouf1/front-end-build:v2

@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: kaniko
+  name: fe-build-task
 spec:
   params:
   - name: IMAGE
