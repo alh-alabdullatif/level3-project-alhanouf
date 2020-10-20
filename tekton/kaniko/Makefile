@@ -30,28 +30,40 @@ user-pr-logs:
 	tkn pr logs -f user-pipeline-run
 
 create-cat:
-
+	k create -f cat-build-task.yaml -f cat-pipeline.yaml
 delete-cat:
+	k delete -f cat-build-task.yaml -f cat-pipeline.yaml
 
 create-front-end:
-
+	k create -f fe-build-task.yaml -f fe-pipeline.yaml
 delete-front-end:
+	k delete -f fe-build-task.yaml -f fe-pipeline.yaml
 
 create-ord:
+	k create -f ord-build-task.yaml -f ord-pipeline.yaml
 delete-ord:
-
+	k delete -f ord-build-task.yaml -f ord-pipeline.yaml
 create-cart:
+	k create -f cart-build-task.yaml -f cart-pipeline.yaml 
 delete-cart:
+	k delete -f cart-build-task.yaml -f cart-pipeline.yaml 
 
 create-shipping:
+	k create -f shipping-build-task.yaml -f shipping-pipeline.yaml
+	
 delete-shipping:
-
+	k delete -f shipping-build-task.yaml -f shipping-pipeline.yaml
 create-q-master:
+	k create -f q-master-build-task.yaml -f q-master-pipeline.yaml 
+
 delete-q-master:
+	k delete -f q-master-build-task.yaml -f q-master-pipeline.yaml
 
 create-pay:
+	k create -f pay-build-task.yaml -f pay-pipeline.yaml	
 delete-pay:
-
+	k delete -f pay-build-task.yaml -f pay-pipeline.yaml
 create-user:
+	k create -f user-build-task.yaml -f user-pipeline.yaml
 delete-user:
-
+	k delete -f user-build-task.yaml -f user-pipeline.yaml
