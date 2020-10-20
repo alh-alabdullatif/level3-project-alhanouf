@@ -60,11 +60,12 @@ kind: PipelineRun
 metadata:
   name: kaniko-test-pipeline-run
 spec:
+  serviceAccountName: alhanouf-sec
   pipelineRef:
     name: kaniko-test-pipeline
   params:
   - name: image
-    value: localhost:5000/kaniko-nocode
+    value: alhanouf1/front-end-build:v2
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:
