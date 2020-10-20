@@ -1,0 +1,73 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: q-master-pipeline
+spec:
+  workspaces:
+  - name: shared-workspace
+  params:
+  - name: image
+    description: reference of the image to build
+  tasks:
+  - name: fetch-repository
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-workspace
+    params:
+    - name: url
+      value: https://github.com/alh-alabdullatif/level3-project-alhanouf.git 
+    - name: subdirectory
+      value: ""
+    - name: deleteExisting
+      value: "true"
+  - name: q-master-build-task
+    taskRef:
+      name: q-master-build-task
+    runAfter:
+    - fetch-repository
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: IMAGE
+      value: $(params.image)
+    - name: EXTRA_ARGS
+      value: "--skip-tls-verify"
+  - name: verify-digest
+    runAfter:
+    - q-master-build-task
+    params:
+    - name: digest
+      value: $(tasks.q-master-build-task.results.IMAGE-DIGEST)
+    taskSpec:
+      params:
+      - name: digest
+      steps:
+      - name: bash
+        image: ubuntu
+        script: |
+          echo $(params.digest)
+          case .$(params.digest) in
+            ".sha"*) exit 0 ;;
+            *)       echo "Digest value is not correct" && exit 1 ;;
+          esac
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: q-master-pipeline-run
+spec:
+  serviceAccountName: alhanouf-sec
+  pipelineRef:
+    name: q-master-pipeline
+  params:
+  - name: image
+    value: alhanouf1/q-master-build
+  workspaces:
+  - name: shared-workspace
+    persistentvolumeclaim:
+      claimName: kaniko-source-pvc
+
