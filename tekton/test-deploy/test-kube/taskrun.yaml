@@ -1,7 +1,32 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
 metadata:
+  name: kubectl-deploy-pod
+spec:
+  taskRef:
+    name: kubectl-deploy-pod
+  params:
+  - name: action
+    value: create
+  - name: success-condition
+    value: status.phase == Running
+  - name: failure-condition
+    value: status.phase in (Failed, Error)
+  - name: output
+    value: |
+      - name: job-name
+        valueFrom: '{.metadata.name}'
+      - name: job-namespace
+        valueFrom: '{.metadata.namespace}' 
+  - name: set-ownerreference
+    value: "true"
+  - name: manifest
+    value: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
   name: front-end
+  namespace: sock-shop
 spec:
   selector:
     matchLabels:
@@ -30,3 +55,4 @@ spec:
           readOnlyRootFilesystem: true
       nodeSelector:
         beta.kubernetes.io/os: linux
+
