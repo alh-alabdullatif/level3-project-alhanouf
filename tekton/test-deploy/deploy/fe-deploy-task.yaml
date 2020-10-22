@@ -20,7 +20,7 @@ spec:
         ls -gAhf source/
 
     - name: kubectl
-      workingDir: $(workspaces.source)
+      #workingDir: $(workspaces.source)
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "tekton/test-deploy/front-end-dep.yaml","-f","tekton/test-deploy/front-end-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/front-end-dep.yaml","-f","source/tekton/test-deploy/front-end-svc.yaml","-n","$(params.name-space)"]
