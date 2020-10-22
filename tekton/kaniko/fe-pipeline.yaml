@@ -51,7 +51,7 @@ spec:
       value: $(params.name-space)
   - name: verify-digest
     runAfter:
-    - fe-build-task
+    - fe-deploy-task
     params:
     - name: digest
       value: $(tasks.fe-build-task.results.IMAGE-DIGEST)
