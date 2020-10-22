@@ -1,4 +1,4 @@
-.PHONY: up create-cat delete-cat ord-pr-logs cat-pr-logs create-cat delete-cat create-front-end delete-front-end
+.PHONY: up create-cat delete-cat ord-pr-logs cat-pr-logs create-cat delete-cat create-front-end delete-front-end docker-login docker-sec
 
 up:
 	 kubectl create -f sa.yaml -f rbac.yaml -f kaniko-source-pvc.yaml -f git-clone-task.yaml
@@ -6,7 +6,7 @@ up:
 docker-login:
 	 docker login -u alhanouf1
 docker-sec:
-	 k create secret generic docker-seceret --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json --type=kubernetes.io/dockerconfigjson
+	 kubectl create secret generic docker-seceret --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json --type=kubernetes.io/dockerconfigjson
 ord-pr-logs:
 	 tkn pr logs -f ord-pipeline-run
 cat-pr-logs:
