@@ -9,6 +9,8 @@ spec:
   params:
   - name: image
     description: reference of the image to build
+  - name: name-space
+    description: reference of namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -36,9 +38,31 @@ spec:
       value: $(params.image)
     - name: EXTRA_ARGS
       value: "--skip-tls-verify"
-  - name: verify-digest
+  - name: pay-deploy-test-task
+    taskRef:
+      name: pay-deploy-task
     runAfter:
     - pay-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space)
+  - name: pay-deploy-prod-task
+    taskRef:
+      name: pay-deploy-task
+    runAfter:
+    - pay-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space)
+  - name: verify-digest
+    runAfter:
+    - pay-deploy-test-task
     params:
     - name: digest
       value: $(tasks.pay-build-task.results.IMAGE-DIGEST)
@@ -66,6 +90,10 @@ spec:
   params:
   - name: image
     value: alhanouf1/payment-build
+  - name: name-space
+    value: test
+  - name: name-space
+    value: prod
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:
