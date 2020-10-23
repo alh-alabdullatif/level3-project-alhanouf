@@ -9,6 +9,10 @@ spec:
   params:
   - name: image
     description: reference of the image to build
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+      description: reference of prod namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -36,6 +40,28 @@ spec:
       value: $(params.image)
     - name: EXTRA_ARGS
       value: "--skip-tls-verify"
+    - name: ord-deploy-test-task
+      taskRef:
+        name: ord-deploy-task
+      runAfter:
+      - ord-build-task
+      workspaces:
+      - name: source
+        workspace: shared-workspace
+     params:
+     - name: name-space-test
+       value: $(params.name-space)
+    - name: ord-deploy-prod-task
+      taskRef:
+        name: ord-deploy-task
+      runAfter:
+      - ord-deploy-test-task
+      workspaces:
+      - name: source
+        workspace: shared-workspace
+      params:
+     - name: name-space-prod
+        value: $(params.name-space)
   - name: verify-digest
     runAfter:
     - ord-build-task
@@ -66,6 +92,10 @@ spec:
   params:
   - name: image
     value: alhanouf1/orders-build
+  - name: name-space-test
+    value: test
+  - name: name-space-prod
+    value: prod
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:

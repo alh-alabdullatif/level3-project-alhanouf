@@ -9,8 +9,10 @@ spec:
   params:
   - name: image
     description: reference of the image to build
-  - name: name-space
-    description: reference of namespace
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+    description: reference of prod namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -90,9 +92,9 @@ spec:
   params:
   - name: image
     value: alhanouf1/shipping-build
-  - name: name-space
+  - name: name-space-test
     value: test
-  - name: name-space
+  - name: name-space-prod
     value: prod
   workspaces:
   - name: shared-workspace

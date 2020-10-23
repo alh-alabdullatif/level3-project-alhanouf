@@ -11,6 +11,10 @@ spec:
     description: reference of the image to build
   - name: db-image
     description: reference of the image to build
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+    description: reference of prod namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -51,6 +55,28 @@ spec:
       value: $(params.db-image)
     - name: EXTRA_ARGS
       value: "--skip-tls-verify"
+  - name: cat-deploy-test-task
+    taskRef:
+      name: cat-deploy-task
+    runAfter:
+    - cat-db-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space-test
+      value: $(params.name-space)
+  - name: cat-deploy-prod-task
+    taskRef:
+      name: cat-deploy-task
+    runAfter:
+    - cat-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space-prod
+      value: $(params.name-space)
   - name: verify-digest
     runAfter:
     - cat-build-task
@@ -83,7 +109,10 @@ spec:
     value: alhanouf1/catalogue-build
   - name: db-image
     value: alhanouf1/catalogue-db-build
-
+  - name: name-space-test
+    value: test
+  - name: name-space-prod
+    value: prod
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:

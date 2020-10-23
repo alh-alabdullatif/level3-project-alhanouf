@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: ord-deploy-task
+  name: shipping-deploy-task
 spec:
   params:
   - name: name-space
@@ -19,13 +19,11 @@ spec:
         echo "-----------"
         ls -gAhf source/
 
-    - name: apply-database
+    - name: apply-rabbit-mq
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/orders-db-dep.yaml","-f","source/tekton/test-deploy/orders-db-svc.yaml","-n","$(params.name-space)"]
-
-
-    - name: kubectl
+      args: ["create", "-f", "source/tekton/test-deploy/rabbitmq-dep.yaml","-f","source/tekton/test-deploy/rabbitmq-svc.yaml","-n","$(params.name-space)"]
+      - name: kubectl
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/orders-dep.yaml","-f","source/tekton/test-deploy/orders-svc.yaml","-n","$(params.name-space)"]
+      args: ["create", "-f", "source/tekton/test-deploy/shipping-dep.yaml","-f","source/tekton/test-deploy/shipping-svc.yaml","-n","$(params.name-space)"]

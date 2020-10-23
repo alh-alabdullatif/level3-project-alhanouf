@@ -9,6 +9,12 @@ spec:
   params:
   - name: image
     description: reference of the image to build
+  - name: db-image
+    description: reference of the image to build
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+    description: reference of prod namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -35,7 +41,42 @@ spec:
     - name: IMAGE
       value: $(params.image)
     - name: EXTRA_ARGS
+      value: "--skip-tls-verify" 
+  - name: user-db-build-task
+    taskRef:
+      name: user-db-build-task
+    runAfter:
+    - user-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: IMAGE
+      value: $(params.db-image)
+    - name: EXTRA_ARGS
       value: "--skip-tls-verify"
+  - name: user-deploy-test-task
+    taskRef:
+      name: user-deploy-task
+    runAfter:
+    - user-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space-test
+      value: $(params.name-space)
+  - name: user-deploy-prod-task
+    taskRef:
+      name: user-deploy-task
+    runAfter:
+    - user-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space-prod
+      value: $(params.name-space)
   - name: verify-digest
     runAfter:
     - user-build-task
@@ -66,8 +107,14 @@ spec:
   params:
   - name: image
     value: alhanouf1/user-build
+  - name: db-image
+    value: alhanouf1/catalogue-db-build
+  - name: name-space-test
+    value: test
+  - name: name-space-prod
+    value: prod
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:
       claimName: kaniko-source-pvc
-
+ 

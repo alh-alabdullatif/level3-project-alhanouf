@@ -9,8 +9,10 @@ spec:
   params:
   - name: image
     description: reference of the image to build
-  - name: name-space
-    description: reference of namespace
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+    description: reference of prod namespace
   tasks:
   - name: fetch-repository
     taskRef:
@@ -47,7 +49,7 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space
+    - name: name-space-test
       value: $(params.name-space)
   - name: fe-deploy-prod-task
     taskRef:
@@ -58,7 +60,7 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space
+    - name: name-space-prod
       value: $(params.name-space)
   - name: verify-digest
     runAfter:
@@ -90,9 +92,9 @@ spec:
   params:
   - name: image
     value: alhanouf1/front-end-build:v2
-  - name: name-space
+  - name: name-space-test
     value: test
-  - name: name-space
+  - name: name-space-prod
     value: prod
   workspaces:
   - name: shared-workspace
