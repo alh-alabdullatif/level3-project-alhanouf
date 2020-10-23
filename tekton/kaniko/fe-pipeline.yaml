@@ -38,7 +38,7 @@ spec:
       value: $(params.image)
     - name: EXTRA_ARGS
       value: "--skip-tls-verify"
-  - name: fe-deploy-task
+  - name: fe-deploy-test-task
     taskRef:
       name: fe-deploy-task
     runAfter:
@@ -49,9 +49,20 @@ spec:
     params:
     - name: name-space
       value: $(params.name-space)
+  - name: fe-deploy-prod-task
+    taskRef:
+      name: fe-deploy-task
+    runAfter:
+    - fe-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space)
   - name: verify-digest
     runAfter:
-    - fe-deploy-task
+    - fe-deploy-test-task
     params:
     - name: digest
       value: $(tasks.fe-build-task.results.IMAGE-DIGEST)
@@ -81,6 +92,8 @@ spec:
     value: alhanouf1/front-end-build:v2
   - name: name-space
     value: test
+  - name: name-space
+    value: prod
   workspaces:
   - name: shared-workspace
     persistentvolumeclaim:
