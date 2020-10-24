@@ -1,17 +1,17 @@
 .PHONY: roles-create docker-login docker-sec cart cart-delete cart-logs catalouge catalouge-delete catalouge-logs front-end front-end-delete front-end-logs orders orders-delete orders-logs payment payment-delete payment-logs q-master q-master-delete q-master-logs shipping shipping-delete shipping-logs user user-delete user-logs
 
 roles-create:
-	 kubectl apply -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f kaniko-source-pvc.yaml -f tekton/kaniko/git-clone-task.yaml
+	 kubectl apply -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f tekton/kaniko/kaniko-source-pvc.yaml -f tekton/kaniko/git-clone-task.yaml
 
 docker-login:
-	 source tekton/docker-login.sh
+	 sudo source tekton/docker-login.sh
 docker-sec:
 	 kubectl create secret generic docker-seceret --from-file=.dockerconfigjson=/home/ubuntu/.docker/config.json --type=kubernetes.io/dockerconfigjson
 
 cart:
-	k create -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml -f tekton/pipelines/cart-pipeline.yaml 
+	kubectl create -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml -f tekton/pipelines/cart-pipeline.yaml 
 cart-delete:
-	 k delete -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml  -f tekton/pipelines/cart-pipeline.yaml
+	kubectl delete -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml  -f tekton/pipelines/cart-pipeline.yaml
 cart-logs:
 	 tkn pr logs -f cart-pipeline-run
 catalouge:

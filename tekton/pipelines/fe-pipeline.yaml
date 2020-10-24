@@ -49,8 +49,8 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space-test
-      value: $(params.name-space)
+    - name: name-space
+      value: $(params.name-space-test)
   - name: fe-deploy-prod-task
     taskRef:
       name: fe-deploy-task
@@ -60,8 +60,8 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space-prod
-      value: $(params.name-space)
+    - name: name-space
+      value: $(params.name-space-prod)
   - name: verify-digest
     runAfter:
     - fe-deploy-test-task
