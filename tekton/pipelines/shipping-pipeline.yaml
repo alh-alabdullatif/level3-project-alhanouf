@@ -50,7 +50,7 @@ spec:
       workspace: shared-workspace
     params:
     - name: name-space
-      value: $(params.name-space)
+      value: $(params.name-space-test)
   - name: shipping-deploy-prod-task
     taskRef:
       name: shipping-deploy-task
@@ -61,7 +61,7 @@ spec:
       workspace: shared-workspace
     params:
     - name: name-space
-      value: $(params.name-space)
+      value: $(params.name-space-prod)
   - name: verify-digest
     runAfter:
     - shipping-build-task

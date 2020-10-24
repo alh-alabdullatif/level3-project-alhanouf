@@ -49,8 +49,8 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space
-      value: $(params.name-space)
+    - name: name-space-test
+      value: $(params.name-space-test)
   - name: pay-deploy-prod-task
     taskRef:
       name: pay-deploy-task
@@ -61,7 +61,7 @@ spec:
       workspace: shared-workspace
     params:
     - name: name-space
-      value: $(params.name-space)
+      value: $(params.name-space-prod)
   - name: verify-digest
     runAfter:
     - pay-deploy-test-task
