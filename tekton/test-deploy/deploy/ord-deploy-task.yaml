@@ -22,10 +22,10 @@ spec:
     - name: apply-database
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/orders-db-dep.yaml","-f","source/tekton/test-deploy/orders-db-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/orders-db-dep.yaml","-f","source/tekton/test-deploy/orders-db-svc.yaml","-n","$(params.name-space)"]
 
 
     - name: kubectl
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/orders-dep.yaml","-f","source/tekton/test-deploy/orders-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/orders-dep.yaml","-f","source/tekton/test-deploy/orders-svc.yaml","-n","$(params.name-space)"]

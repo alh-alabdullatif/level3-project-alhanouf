@@ -20,9 +20,9 @@ spec:
     - name: apply-rabbit-mq
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/rabbitmq-dep.yaml","-f","source/tekton/test-deploy/rabbitmq-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/rabbitmq-dep.yaml","-f","source/tekton/test-deploy/rabbitmq-svc.yaml","-n","$(params.name-space)"]
 
     - name: kubectl
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/shipping-dep.yaml","-f","source/tekton/test-deploy/shipping-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/shipping-dep.yaml","-f","source/tekton/test-deploy/shipping-svc.yaml","-n","$(params.name-space)"]

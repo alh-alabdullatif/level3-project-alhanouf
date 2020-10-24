@@ -23,4 +23,4 @@ spec:
       #workingDir: $(workspaces.source)
       image: "bitnami/kubectl"
       command: ["kubectl"]
-      args: ["create", "-f", "source/tekton/test-deploy/payment-dep.yaml","-f","source/tekton/test-deploy/payment-svc.yaml","-n","$(params.name-space)"]
+      args: ["apply", "-f", "source/tekton/test-deploy/payment-dep.yaml","-f","source/tekton/test-deploy/payment-svc.yaml","-n","$(params.name-space)"]
