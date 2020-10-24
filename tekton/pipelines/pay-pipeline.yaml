@@ -49,7 +49,7 @@ spec:
     - name: source
       workspace: shared-workspace
     params:
-    - name: name-space-test
+    - name: name-space
       value: $(params.name-space-test)
   - name: pay-deploy-prod-task
     taskRef:

@@ -59,7 +59,7 @@ spec:
     taskRef:
       name: user-deploy-task
     runAfter:
-    - user-build-task
+    - user-db-build-task
     workspaces:
     - name: source
       workspace: shared-workspace
