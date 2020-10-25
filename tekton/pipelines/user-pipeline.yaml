@@ -108,7 +108,7 @@ spec:
   - name: image
     value: alhanouf1/user-build
   - name: db-image
-    value: alhanouf1/catalogue-db-build
+    value: alhanouf1/user-db-build
   - name: name-space-test
     value: test
   - name: name-space-prod

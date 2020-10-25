@@ -91,7 +91,7 @@ spec:
     name: fe-pipeline
   params:
   - name: image
-    value: alhanouf1/front-end-build:v2
+    value: alhanouf1/front-end-build
   - name: name-space-test
     value: test
   - name: name-space-prod
