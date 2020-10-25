@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: weaveworksdemos/payment:0.4.3
+        image: alhanouf1/payment-build
         ports:
         - containerPort: 80
         securityContext:

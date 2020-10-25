@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: weaveworksdemos/user-db:0.4.0
+        image: alhanouf1/user-db-build
         ports:
         - name: mongo
           containerPort: 27017

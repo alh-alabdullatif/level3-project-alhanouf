@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: carts
-        image: weaveworksdemos/carts:0.4.8
+        image: alhanouf1/cart-build
         ports:
          - containerPort: 80
         env:

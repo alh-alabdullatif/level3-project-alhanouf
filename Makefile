@@ -23,9 +23,9 @@ catalouge-logs:
 	tkn pr logs -f cat-pipeline-run
 
 front-end:
-	k apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/fe-build-task.yaml -f tekton/test-deploy/deploy/fe-deploy-task.yaml -f tekton/pipelines/fe-pipeline.yaml 
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/fe-build-task.yaml -f tekton/test-deploy/deploy/fe-deploy-task.yaml -f tekton/pipelines/fe-pipeline.yaml 
 front-end-delete:
-	k delete -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/fe-build-task.yaml -f tekton/test-deploy/deploy/fe-deploy-task.yaml -f tekton/pipelines/fe-pipeline.yaml
+	kubectl delete -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/fe-build-task.yaml -f tekton/test-deploy/deploy/fe-deploy-task.yaml -f tekton/pipelines/fe-pipeline.yaml
 front-end-logs:
 	tkn pr logs -f fe-pipeline-run
 orders:
