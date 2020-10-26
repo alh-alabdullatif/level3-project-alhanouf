@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: alhanouf1/catalogue-buildpod/catalogue-7b7475669d-zgxdx
+        image: alhanouf1/catalogue-build
         ports:
         - containerPort: 80
         securityContext:
