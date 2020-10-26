@@ -23,7 +23,17 @@ spec:
       command: ["kubectl"]
       args: ["create", "-f", "source/tekton/test-deploy/catalogue-db-dep.yaml","-f","source/tekton/test-deploy/catalogue-db-svc.yaml","-n","$(params.name-space)"]
 
+    - name: wait-for-database-deploy
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["wait", "--for=condition=Running", "--timeout=60s","pipelinerun/pipeline-run"]
+
     - name: kubectl
       image: "bitnami/kubectl"
       command: ["kubectl"]
       args: ["create", "-f", "source/tekton/test-deploy/catalogue-dep.yaml","-f","source/tekton/test-deploy/catalogue-svc.yaml","-n","$(params.name-space)"]
+
+    - name: wait-for-catalouge-deploy
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["wait", "--for=condition=Running", "--timeout=60s","pipelinerun/pipeline-run"]
