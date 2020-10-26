@@ -4,3 +4,4 @@ metadata:
   name: alhanouf-sec
 secrets:
   - name: docker-seceret
+  - name: github-secret
