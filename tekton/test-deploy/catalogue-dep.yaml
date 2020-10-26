@@ -16,8 +16,11 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: alhanouf1/catalogue-build
+        image: alhanouf1/catalogue-buildpod/catalogue-7b7475669d-zgxdx
         ports:
         - containerPort: 80
+        securityContext:
+          runAsUser: 0
+          readOnlyRootFilesystem: true
       nodeSelector:
         beta.kubernetes.io/os: linux
