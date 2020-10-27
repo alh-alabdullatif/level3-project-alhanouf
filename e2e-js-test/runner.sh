@@ -3,7 +3,7 @@
 code=0
 testfile=$1
 files=$testfile
-
+pwd
 if [ -z $testfile ]
 then
   files=$(ls /e2e-js-test/*_test.js)
