@@ -2,16 +2,16 @@
 FROM maven:3-jdk-11 as build
 WORKDIR /tmp
 
-copy src /tmp/src
-copy pom.xml /tmp/
+COPY src /tmp/src
+COPY pom.xml /tmp/
 
-run  mvn clean package
+RUN  mvn clean package
 
-from adoptopenjdk/openjdk11:alpine
-
+#FROM adoptopenjdk/openjdk11:alpine
+FROM weaveworksdemos/msd-java:jre-latest
 COPY --from=build /tmp/target/shipping.jar /shipping.jar
 
-run chmod a+rx ./shipping.jar
+RUN chmod a+rx ./shipping.jar
 
 USER ${SERVICE_USER}
 
