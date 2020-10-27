@@ -18,26 +18,28 @@ FROM weaveworksdemos/msd-java:jre-latest
 
 COPY --from=build /tmp-q/target/queue-master.jar /queue-master.jar
 
-ENV	SERVICE_USER=myuser \
-	SERVICE_UID=10001 \
-	SERVICE_GROUP=mygroup \
-	SERVICE_GID=10001
+#ENV	SERVICE_USER=myuser \
+#	SERVICE_UID=10001 \
 
-RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
-	adduser -g "${SERVICE_NAME} user" -D -H -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} && \
-	apk add --update libcap && \
-	mkdir /lib64 && \
-	ln -s /usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server/libjvm.so /lib/libjvm.so && \
-	ln -s /usr/lib/jvm/java-1.8-openjdk/lib/amd64/jli/libjli.so /lib/libjli.so && \
-	setcap 'cap_net_bind_service=+ep' $(readlink -f $(which java))
+#	SERVICE_GROUP=mygroup \
+#	SERVICE_GID=10001
+
+#RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
+#	adduser -g "${SERVICE_NAME} user" -D -H -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} && \
+#	apk add --update libcap && \
+#	mkdir /lib64 && \
+#	ln -s /usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server/libjvm.so /lib/libjvm.so && \
+#	ln -s /usr/lib/jvm/java-1.8-openjdk/lib/amd64/jli/libjli.so /lib/libjli.so && \
+#	setcap 'cap_net_bind_service=+ep' $(readlink -f $(which java))
 
 #WORKDIR /usr/src/app
 #COPY *.jar ./app.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ../queue-master.jar
 
-USER ${SERVICE_USER}
+#RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ../queue-master.jar
 
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+#USER ${SERVICE_USER}
+
+ENTRYPOINT ["/usr/local/bin/java.sh","-jar","../queue-master.jar", "--port=80"]
 
 #ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","../queue-master.jar", "--port=80"]
