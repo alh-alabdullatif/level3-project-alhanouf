@@ -10,11 +10,11 @@ COPY pom.xml /tmp-q
 
 RUN mvn clean package
 
-#FROM weaveworksdemos/msd-java:jre-latest
 
 #ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+FROM weaveworksdemos/msd-java:jre-latest
 
-FROM java:openjdk-8-alpine
+#FROM java:openjdk-8-alpine
 
 COPY --from=build /tmp-q/target/queue-master.jar /queue-master.jar
 
