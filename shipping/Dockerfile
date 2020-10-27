@@ -29,4 +29,4 @@ LABEL org.label-schema.vendor="alhanouf1" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./shipping.jar", "--port=80"]
+ENTRYPOINT ["/usr/bin/java","-jar","./shipping.jar", "--port=80"]
