@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  params:
+  #- name: name-space
+    #description: name to namespace for depolyment
+  workspaces:
+  - name: source
+  # Step to create Knative Service from YAML file using kubectl.
+  steps:
+    - name: debug
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        pwd
+        ls -gAhF
+        echo "-----------"
+        ls -gAhf source/
+
+
+    - name: run-test
+      image: node:alpine
+      script: |
+        #!/usr/bin/env bash
+        pwd
+        echo "-----------"
+        ls -gAhf source/
+        chmod +x source/e2e-js-test/runner.sh
+        .runner.sh
