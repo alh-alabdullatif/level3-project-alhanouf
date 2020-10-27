@@ -3,26 +3,30 @@ kind: Task
 metadata:
   name: test-task
 spec:
-  params:
+  #params:
   #- name: name-space
     #description: name to namespace for depolyment
-  workspaces:
-  - name: source
+  #workspaces:
+  #- name: source
   # Step to create Knative Service from YAML file using kubectl.
   steps:
-    - name: debug
-      image: ubuntu
-      script: |
-        #!/usr/bin/env bash
-        pwd
-        ls -gAhF
-        echo "-----------"
-        ls -gAhf source/
+   # - name: debug
+    #  image: ubuntu
+     # script: |
+      #  #!/usr/bin/env bash
+       # pwd
+       # ls -gAhF
+       # echo "-----------"
+       # ls -gAhf source/
+       # echo "-----------"
+       # ls -gAhf source/e2e-js-test
 
 
     - name: run-test
-      image: ubuntu
+      image: alhanouf1/test
       script: |
-        #!/usr/bin/env bash
-        chmod +x source/e2e-js-test/runner.sh
-        bash source/e2e-js-test/runner.sh
+        #!/bin/sh
+        pwd
+        ls
+        chmod +x tmp/tests/tests/runner.sh
+        sh tmp/tests/tests/runner.sh
