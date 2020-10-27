@@ -1,4 +1,25 @@
-.PHONY: roles-create docker-login docker-sec cart cart-delete cart-logs catalouge catalouge-delete catalouge-logs front-end front-end-delete front-end-logs orders orders-delete orders-logs payment payment-delete payment-logs q-master q-master-delete q-master-logs shipping shipping-delete shipping-logs user user-delete user-logs
+.PHONY: up roles-create docker-login docker-sec cart cart-delete cart-logs catalouge catalouge-delete catalouge-logs front-end front-end-delete front-end-logs orders orders-delete orders-logs payment payment-delete payment-logs q-master q-master-delete q-master-logs shipping shipping-delete shipping-logs user user-delete user-logs
+
+
+up:
+	roles-create \
+	docker-sec \
+	cart \
+	cart-logs\
+	catalouge \
+	catalouge-logs \
+	front-end \
+	front-end-logs \
+	orders \
+	orders-logs \
+	payment \
+	payment-logs \
+	q-master \
+	q-master-logs \
+	shipping \
+	shipping-logs \
+	user \
+	user-logs 
 
 roles-create:
 	 kubectl apply -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f tekton/kaniko/kaniko-source-pvc.yaml -f tekton/kaniko/git-clone-task.yaml
