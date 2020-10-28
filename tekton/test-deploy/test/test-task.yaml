@@ -23,10 +23,10 @@ spec:
 
     - name: run-test
       image: alhanouf1/test
-      workingDir: /workspace/source/e2e-js-test/runner.sh
+      workingDir: /workspace/source/e2e-js-test/
       script: |
         #!/bin/sh
         pwd
         ls
-        chmod +x tmp/tests/tests/runner.sh
-        sh tmp/tests/tests/runner.sh
+        chmod +x runner.sh
+        sh runner.sh
