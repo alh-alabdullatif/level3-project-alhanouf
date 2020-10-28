@@ -25,11 +25,15 @@ Tue  13-10
 -Fix:delete the plugin dependencies in the pom.xml \
 
 Wed  14-10
-Started working on Queue Master
+Started working on Queue Master\ 
 
 Thu  15-10
+Countiue working on Queue Master \
+used jdk 8 and used mvn clean package instead of cache\
+Merged braches and removed conflicts \
 Fri  16-10
-
+Coutine to work on merging braches and removing conflicts \
+added install-tkn-cli to Makefile \
 Sat  17-10
 
 Sun  18-10
@@ -47,9 +51,14 @@ Fri  23-10
 Sat  24-10
 Sun  25-10
 Mon  26-10
+-Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff \
+- fix: working on catalouge
 Tue  27-10
+-Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff \
+-Fix: reused the jre images by waveworks in the Dockerfile \
+- Started working on the test task \
 Wed  28-10
+Countiue working on the test task 
 Thu 29-10
 Fri  30-10
-Sat  31-10
 
