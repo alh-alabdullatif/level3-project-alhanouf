@@ -24,9 +24,13 @@ spec:
 
     - name: run-test
       image: alhanouf1/test
-      script: |
+      command: ["/bin/sh"]
+      args: 
+        - "-c"
+        - "tmp/tests/tests/runner.sh"
+      #script: |
         #!/bin/sh
-        pwd
-        ls
-        chmod +x tmp/tests/tests/runner.sh
-        sh tmp/tests/tests/runner.sh
+        #pwd
+        #ls
+        #chmod +x tmp/tests/tests/runner.sh
+        #sh tmp/tests/tests/runner.sh
