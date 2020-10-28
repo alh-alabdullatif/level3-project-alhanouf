@@ -6,9 +6,8 @@ spec:
   #params:
   #- name: name-space
     #description: name to namespace for depolyment
-  #workspaces:
-  #- name: source
-  # Step to create Knative Service from YAML file using kubectl.
+  workspaces:
+  - name: source
   steps:
    # - name: debug
     #  image: ubuntu
@@ -24,14 +23,10 @@ spec:
 
     - name: run-test
       image: alhanouf1/test
-      command: ["/bin/sh"]
-      args: 
-        - "ls"        
-        - "-c"
-        - "tmp/tests/tests/runner.sh"
-      #script: |
+      workingDir: /workspace/source/e2e-js-test/runner.sh
+      script: |
         #!/bin/sh
-        #pwd
-        #ls
-        #chmod +x tmp/tests/tests/runner.sh
-        #sh tmp/tests/tests/runner.sh
+        pwd
+        ls
+        chmod +x tmp/tests/tests/runner.sh
+        sh tmp/tests/tests/runner.sh
