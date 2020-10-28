@@ -26,6 +26,7 @@ spec:
       image: alhanouf1/test
       command: ["/bin/sh"]
       args: 
+        - "ls"        
         - "-c"
         - "tmp/tests/tests/runner.sh"
       #script: |
