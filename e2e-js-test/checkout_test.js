@@ -7,20 +7,19 @@
   casper.test.begin("User buys some socks", 5, function(test) {
     // initial load and login
     casper.start("http://front-end:8080/", function() {
-      test.assertNotVisible("#login-modal", "user does not see the login d    ialogue");
- 
-        this.clickLabel("Login");
-        casper.waitUntilVisible("#login-modal", function() {
-          test.assertVisible("#login-modal", "user is presented with the log    in dialogue");
-          this.fill("#login-modal form", {
-            "username": "Eve_Berger",
-            "password": "eve"
-          }, false);
-        }, function() {
-          test.fail("login dialogue never showed up");
-       }, 3000);
-      });
+     test.assertNotVisible("#login-modal", "user does not see the login dialogue");
 
+      this.clickLabel("Login");
+      casper.waitUntilVisible("#login-modal", function() {
+        test.assertVisible("#login-modal", "user is presented with the login dialogue");
+        this.fill("#login-modal form", {
+          "username": "Eve_Berger",
+          "password": "duis"
+        }, false);
+      }, function() {
+        test.fail("login dialogue never showed up");
+      }, 3000);
+    });
     // TODO: Test that "Proceed to checkout" button is disabled when the cart is empty
 
     // access the catalogue
