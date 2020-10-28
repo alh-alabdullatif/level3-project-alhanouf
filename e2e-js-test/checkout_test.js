@@ -6,7 +6,7 @@
 
   casper.test.begin("User buys some socks", 5, function(test) {
     // initial load and login
-    casper.start("http://front-end:8080/", function() {
+    casper.start("http://front-end/", function() {
      test.assertNotVisible("#login-modal", "user does not see the login dialogue");
 
       this.clickLabel("Login");
@@ -21,6 +21,15 @@
       }, 3000);
     });
     // TODO: Test that "Proceed to checkout" button is disabled when the cart is empty
+
+    casper.then(function() {
+      this.click("#login-modal form button.btn.btn-primary");
+      this.waitForText("Logged in as Eve Berger", function() {
+        test.pass("user is logged in");
+      }, function() {
+        test.fail("user login failed");
+      }, 3000);
+    });
 
     // access the catalogue
     casper.then(function() {
@@ -65,6 +74,7 @@
 
     // actually checkout
     casper.then(function() {
+      this.click("button#orderButton");
       this.waitForText("My orders", function() {
         test.pass("user is taken to the orders page");
       }, function() {
