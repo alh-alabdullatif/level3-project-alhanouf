@@ -12,18 +12,17 @@ RUN npm install -g casperjs mocha jscodeshift
 #RUN npm init -y
 #RUN npm install
 RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
-
-
+COPY runner.js /tmp
 WORKDIR /tmp
 RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz | tar xz &&\
-@@ -21,9 +14,5 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
+  cp -R lib lib64 / &&\
+  cp -R usr/lib/x86_64-linux-gnu /usr/lib &&\
   curl -k -Ls https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | tar -jxf - &&\
   cp phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs &&\
   rm -rf /tmp/*
-RUN ls ls /tmp
 #RUN npm init -y && npm install
 #RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
 #RUN npm install mongodb 
 #WORKDIR tests
 #COPY . tests
-COPY . /test
+
