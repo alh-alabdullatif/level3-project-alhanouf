@@ -27,9 +27,9 @@ spec:
       workingDir: /tests/
       command: ["/bin/sh"]
       args:
-        - "chmod"
-        - "+x"
-        - "/tests/runner.sh"
+        #- "chmod"
+        #- "+x"
+        #- "/tests/runner.sh"
         - "-c"
         - "/tests/runner.sh"
       #script: |
