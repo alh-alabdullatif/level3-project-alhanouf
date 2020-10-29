@@ -5,9 +5,11 @@ RUN apk add --update --no-cache make git curl jq python3 && \
     ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
+RUN npm install mongodb --save
+
 RUN npm install -g npm@7.0.6
 RUN npm init -y
-RUN npm install mongodb --save
+
 
 RUN npm install -g casperjs mocha jscodeshift
 
