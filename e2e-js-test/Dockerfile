@@ -25,9 +25,11 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
 #RUN npm install mongodb 
 #WORKDIR tests
 
-RUN chmod +x runner.sh
+
 WORKDIR /tests
 
 COPY . /tests
+
+RUN chmod +x /bin/sh/tests/runner.sh
 
 RUN npm install
