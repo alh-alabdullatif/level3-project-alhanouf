@@ -10,7 +10,7 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 RUN npm init -y
 
 RUN npm install -g casperjs mocha jscodeshift
-RUN npm install -g npm@7.0.6
+#RUN npm install -g npm@7.0.6
 RUN npm install --save mongodb
 RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
 
