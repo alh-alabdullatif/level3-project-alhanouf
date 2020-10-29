@@ -30,6 +30,6 @@ WORKDIR /tests
 
 COPY . /tests
 
-RUN chmod +x /bin/sh/tests/runner.sh
+RUN chmod +x /tests/runner.sh
 
 RUN npm install
