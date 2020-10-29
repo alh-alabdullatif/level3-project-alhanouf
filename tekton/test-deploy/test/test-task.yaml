@@ -24,7 +24,7 @@ spec:
     - name: run-test
       image: alhanouf1/test
       #workingDir: /workspace/source/e2e-js-test/
-      workingDir: /tmp/
+      workingDir: /~/
       script: |
         #!/bin/sh
         pwd
