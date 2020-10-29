@@ -25,9 +25,13 @@ spec:
       image: alhanouf1/test
       #workingDir: /workspace/source/e2e-js-test/
       workingDir: /tests/
-      script: |
+      command: ["/bin/sh"]
+      args:
+        - "-c"
+        - "/tests/runner.sh"
+      #script: |
         #!/bin/sh
-        pwd
-        ls
+       # pwd
+        #ls
         #chmod +x /tests/runner.sh
-        sh /tests/runner.sh
+        #sh /tests/runner.sh
