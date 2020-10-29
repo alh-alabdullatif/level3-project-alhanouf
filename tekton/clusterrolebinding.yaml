@@ -5,7 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: alhanouf-sec
-    namespace: default
+    namespace: test #default 
 roleRef:
   kind: ClusterRole
   name: default-admin

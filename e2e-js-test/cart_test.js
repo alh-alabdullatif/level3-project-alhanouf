@@ -2,7 +2,7 @@
   'use strict';
   require("./config");
 
-  casper.test.begin("User interacts with the cart", 2, function(test) {
+  casper.test.begin("User interacts with the cart", 1, function(test) {
     // initial load and login
     casper.start("http://front-end/", function() {
       this.clickLabel("Login");
