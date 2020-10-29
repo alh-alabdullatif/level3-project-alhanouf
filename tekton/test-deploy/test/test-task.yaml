@@ -29,5 +29,5 @@ spec:
         #!/bin/sh
         pwd
         ls
-        chmod +x runner.sh
-        sh runner.sh
+        #chmod +x /tests/runner.sh
+        sh /tests/runner.sh
