@@ -24,5 +24,9 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
 #RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
 #RUN npm install mongodb 
 #WORKDIR tests
-COPY . /tmp
 
+WORKDIR /tests
+
+COPY . /tests
+
+RUN npm install
