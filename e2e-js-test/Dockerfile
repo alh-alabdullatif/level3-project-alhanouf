@@ -6,9 +6,6 @@ RUN apk add --update --no-cache make git curl jq python3 && \
 RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
- 
-RUN npm install -g npm@7.0.6
-
 
 RUN npm init -y
 
@@ -17,8 +14,7 @@ RUN npm install -g casperjs mocha jscodeshift
 RUN npm install -g npm@7.0.6
 
 RUN npm install --save mongodb chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
-   
-RUN npm init -y
+
 
 WORKDIR /tmp
 RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz | tar xz &&\
