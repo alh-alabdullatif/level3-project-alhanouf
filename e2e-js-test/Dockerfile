@@ -7,7 +7,7 @@ RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
 RUN npm install -g casperjs mocha jscodeshift
-RUN npm init -y && npm install
+RUN npm init
 RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
 RUN npm install mongodb
 
