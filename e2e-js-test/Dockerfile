@@ -6,8 +6,8 @@ RUN apk add --update --no-cache make git curl jq python3 && \
 RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
-RUN npm install -g casperjs mocha jscodeshift
-RUN npm init
+RUN npm install -g casperjs mocha jscodeshift && npm init -y
+
 RUN npm install --save chrome-remote-interface chrome-launcher mocha express request body-parser sinon chai chai-http http
 RUN npm install mongodb
 
