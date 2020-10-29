@@ -15,22 +15,17 @@
         this.fill("#login-modal form", {
           "username": "Eve_Berger",
           "password": "eve"
-        }, false);
+        }, true);
+  this.click("#login-modal form button.btn.btn-primary");
+      this.waitForText("Logged in", function() {
+        test.comment("user logged in");
       }, function() {
         test.fail("login dialogue never showed up");
       }, 3000);
-    });
+   });  });
     // TODO: Test that "Proceed to checkout" button is disabled when the cart is empty
 
-    casper.then(function() {
-      this.click("#login-modal form button.btn.btn-primary");
-      this.waitForText("Logged in as Eve Berger", function() {
-        test.pass("user is logged in");
-      }, function() {
-        test.fail("user login failed");
-      }, 3000);
-    });
-
+    
     // access the catalogue
     casper.then(function() {
       this.clickLabel("Catalogue");
@@ -74,7 +69,7 @@
 
     // actually checkout
     casper.then(function() {
-      this.click("button#orderButton");
+     // this.click("button#orderButton");
       this.waitForText("My orders", function() {
         test.pass("user is taken to the orders page");
       }, function() {
