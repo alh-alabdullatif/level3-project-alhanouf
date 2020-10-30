@@ -2,7 +2,7 @@
 
 ## Capstone Project
 
-We are to demonstrate a near production-ready K8S platform hosting the Weaveworks Shock Shop demo. using kubernetes - Tekton - elf - prometheus and grafana
+We are demonstrating a near production-ready K8S platform hosting the Weaveworks Shock Shop demo. using kubernetes - Tekton - elf - prometheus and grafana
 
 ## Directories 
 Each micro-service has it's own repo - there we have Dockerfile that will be used to build and run the images to docker hub
@@ -10,7 +10,7 @@ Each micro-service has it's own repo - there we have Dockerfile that will be use
 Tekton 
 - Contains clusterrole - clusterrole binding - service account
 
-## subdiectories
+## Subdiectories
 - Pipelines (*has the pipelines*)
 - kaniko (*has build tasks*)
 - test-deploy (*has all service and deployment files for the micro-services*)
