@@ -45,7 +45,7 @@ Each micro-services has its own pipeline each will have 4 Tekton tasks except us
 - pro graf is in the monitor namespace 
 ## Dashboards
 - Can be found in k8s-sandbox under json-dashboard folder
-- To use them upload them into the grafana
+- To use them upload them into grafana
 ## More
  
 - The tools can be accessed via Nodeport
