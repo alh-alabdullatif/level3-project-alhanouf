@@ -1,6 +1,6 @@
 .PHONY: up down init cluster-up install uninstall logs repos namespaces cluster-down clean provision
 
-up: cluster-up init install-cicd install-tkn-cli 
+up: cluster-up init install-cicd install-tkn-cli config-logging config-monitoring 
 
 down: cluster-down
 
@@ -119,8 +119,8 @@ delete-ingress:
 	echo "Ingress: delete" | tee -a output.log
 	kubectl delete -n ingress -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml | tee -a output.log 2>/dev/null | true
 
-install-monitoring: install-prometheus install-grafana
-delete-monitoring: delete-prometheus delete-grafana
+install-monitoring: install-prometheus install-grafana config-logging config-monitoring
+delete-monitoring: delete-prometheus delete-grafana config-logging config-monitoring
 
 install-prometheus:
 	echo "Monitoring: install-grafana" | tee -a output.log
@@ -153,3 +153,8 @@ delete-logging:
 	helm delete fluent-bit -n logging | tee -a output.log 2>/dev/null | true
 	echo "Logging: delete-elasticsearch" | tee -a output.log
 	helm delete kibana elastic/kibana -n logging | tee -a output.log 2>/dev/null | true
+
+config-logging:
+	bash elf.sh
+config-monitoring:
+	bash pro-graf.sh 
