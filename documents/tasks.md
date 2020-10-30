@@ -40,7 +40,7 @@ Sun Start 18-10
 ![Sun 10-18](assets/Sun-start-2020-10-18.png)
 
 Sun End 18-10
-![Sat 10-18](assets/Sat-end-2020-10-18.png)
+![Sun 10-18](assets/Sun-end-2020-10-18.png)
 
 Mon Start 19-10
 ![Mon 10-19](assets/Mon-start-2020-10-19.png)
@@ -58,7 +58,7 @@ Wed Start 21-10
 ![Wed 10-21](assets/Wed-start-2020-10-21.png)
 
 Wed End 21-10
-![Wed 10-21](assets/Thu-end-2020-10-21.png)
+![Wed 10-21](assets/Wed-end-2020-10-21.png)
 
 Thu Start 22-10
 ![Thu 10-22](assets/Thu-start-2020-10-22.png)
