@@ -35,7 +35,7 @@ while in the main directory
 
 ## Pipelines structure 
 
-each micro-services has its own pipeline each will have 4 Tekton tasks except user & catalouge will have 5 steps (for building the db image)
+Each micro-services has its own pipeline each will have 4 Tekton tasks except user & catalouge will have 5 steps (for building the db image)
 1 - building the image and or db
 2 - applying the micro-services to the test name-space 
 3 - running the tests
