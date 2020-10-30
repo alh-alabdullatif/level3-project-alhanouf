@@ -52,22 +52,22 @@ Fri  23-10
 - working o db deplyment tasks 
 Sat  24-10
 - working on tasks deploying sav,dep to test and prod namespaces by passing parameters to tasks and pipeline runs \
-- learn about workspaces in tekton 
+- learn about workspaces in tekton \
 Sun  25-10
-- Continue working on tasks 
+- Continue working on tasks \
 Mon  26-10
 - Continue working on deployment tasks
 - Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff 
-- fix: working on catalouge 
+- fix: working on catalouge \
 Tue  27-10
 - Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff 
 - Fix: reused the jre images by waveworks in the Dockerfile 
-- Started working on the test task 
+- Started working on the test task \
 Wed  28-10
-- Countiue working on the test task 
+- Countiue working on the test task \
 Thu 29-10
-- Countiue working on the test task 
-- added pro-graf and elf  
+- Countiue working on the test task \
+- added pro-graf and elf  \
 Fri  30-10
 - configure pro-graf and elf 
 - add deployment tasks to all pipelines 
