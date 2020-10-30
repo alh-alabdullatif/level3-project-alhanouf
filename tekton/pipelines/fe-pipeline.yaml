@@ -59,9 +59,9 @@ spec:
     workspaces:
     - name: source
       workspace: shared-workspace
-  - name: fe-deploy-prod-task
+  - name: all-deploy-task
     taskRef:
-      name: fe-deploy-task
+      name: all-deploy-task
     runAfter:
     - test-task
     workspaces:

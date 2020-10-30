@@ -70,10 +70,10 @@ spec:
     taskRef:
       name: test-task
     runAfter:
-   - cat-deploy-test-task
+    - cat-deploy-test-task
     workspaces:
-   - name: source
-     workspace: shared-workspace
+    - name: source
+      workspace: shared-workspace
   - name: cat-deploy-prod-task
     taskRef:
       name: cat-deploy-task
