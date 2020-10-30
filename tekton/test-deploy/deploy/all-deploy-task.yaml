@@ -1,0 +1,91 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: all-deploy-task
+spec:
+  params:
+  - name: name-space
+    description: name to namespace for depolyment
+  workspaces:
+  - name: source
+  # Step to create Knative Service from YAML file using kubectl.
+  steps:
+    - name: debug
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        pwd
+        ls -gAhF
+        echo "-----------"
+        ls -gAhf source/
+
+    - name: apply-carts-database
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/carts-db-dep.yaml","-f","source/tekton/test-deploy/carts-db-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-carts
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/carts-dep.yaml","-f","source/tekton/test-deploy/carts-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-cat-database
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/catalogue-db-dep.yaml","-f","source/tekton/test-deploy/catalogue-db-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-cat
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/catalogue-dep.yaml","-f","source/tekton/test-deploy/catalogue-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-front-end
+      #workingDir: $(workspaces.source)
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/front-end-dep.yaml","-f","source/tekton/test-deploy/front-end-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-ord-database
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/orders-db-dep.yaml","-f","source/tekton/test-deploy/orders-db-svc.yaml","-n","$(params.name-space)"]
+
+
+    - name: apply-ord
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/orders-dep.yaml","-f","source/tekton/test-deploy/orders-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-pay
+      #workingDir: $(workspaces.source)
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/payment-dep.yaml","-f","source/tekton/test-deploy/payment-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-q-master
+      #workingDir: $(workspaces.source)
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/queue-master-dep.yaml","-f","source/tekton/test-deploy/queue-master-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-rabbit-mq
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/rabbitmq-dep.yaml","-f","source/tekton/test-deploy/rabbitmq-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-shipping
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/shipping-dep.yaml","-f","source/tekton/test-deploy/shipping-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-user-database
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/user-db-dep.yaml","-f","source/tekton/test-deploy/user-db-svc.yaml","-n","$(params.name-space)"]
+
+    - name: apply-user
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/user-dep.yaml","-f","source/tekton/test-deploy/user-svc.yaml","-n","$(params.name-space)"]
+~                                                                     
+~                                                                          
