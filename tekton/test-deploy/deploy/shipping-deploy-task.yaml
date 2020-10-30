@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: shipping-deploy-task
+spec:
+  params:
+  - name: name-space
+    description: name to namespace for depolyment
+  workspaces:
+  - name: source
+  # Step to create Knative Service from YAML file using kubectl.
+  steps:
+    - name: debug
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        pwd
+        ls -gAhF
+        echo "-----------"
+    - name: apply-rabbit-mq
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/rabbitmq-dep.yaml","-f","source/tekton/test-deploy/rabbitmq-svc.yaml","-n","$(params.name-space)"]
+
+    - name: kubectl
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/shipping-dep.yaml","-f","source/tekton/test-deploy/shipping-svc.yaml","-n","$(params.name-space)"]

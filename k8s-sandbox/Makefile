@@ -1,6 +1,6 @@
 .PHONY: up down init cluster-up install uninstall logs repos namespaces cluster-down clean provision
 
-up: cluster-up init
+up: cluster-up init install-cicd install-tkn-cli config-logging config-monitoring 
 
 down: cluster-down
 
@@ -73,6 +73,12 @@ install-cicd:
 	kubectl apply -f https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
 	kubectl patch svc tekton-dashboard -n tekton-pipelines --type='json' -p '[{"op":"replace", "path":"/spec/type", "value":"NodePort"}]'
 	kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.2/git-clone.yaml
+install-tkn-cli:
+	sudo apt update
+	sudo apt install -y gnupg
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3EFE0E0A2F2F60AA
+	echo "deb http://ppa.launchpad.net/tektoncd/cli/ubuntu eoan main"|sudo tee /etc/apt/sources.list.d/tektoncd-ubuntu-cli.list
+	sudo apt update && sudo apt install -y tektoncd-cli
 
 delete-cicd:
 	echo "cicd: delete" | tee -a output.log
@@ -113,8 +119,8 @@ delete-ingress:
 	echo "Ingress: delete" | tee -a output.log
 	kubectl delete -n ingress -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml | tee -a output.log 2>/dev/null | true
 
-install-monitoring: install-prometheus install-grafana
-delete-monitoring: delete-prometheus delete-grafana
+install-monitoring: install-prometheus install-grafana config-logging config-monitoring
+delete-monitoring: delete-prometheus delete-grafana config-logging config-monitoring
 
 install-prometheus:
 	echo "Monitoring: install-grafana" | tee -a output.log
@@ -147,3 +153,8 @@ delete-logging:
 	helm delete fluent-bit -n logging | tee -a output.log 2>/dev/null | true
 	echo "Logging: delete-elasticsearch" | tee -a output.log
 	helm delete kibana elastic/kibana -n logging | tee -a output.log 2>/dev/null | true
+
+config-logging:
+	bash elf.sh
+config-monitoring:
+	bash pro-graf.sh 

@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+spec:
+  #params:
+  #- name: name-space
+    #description: name to namespace for depolyment
+  workspaces:
+  - name: source
+  steps:
+   # - name: debug
+    #  image: ubuntu
+     # script: |
+      #  #!/usr/bin/env bash
+       # pwd
+       # ls -gAhF
+       # echo "-----------"
+       # ls -gAhf source/
+       # echo "-----------"
+       # ls -gAhf source/e2e-js-test
+
+
+    - name: run-test
+      image: alhanouf1/test
+      #workingDir: /workspace/source/e2e-js-test/
+      workingDir: /tests/
+      command: ["/bin/sh"]
+      args:
+        #- "chmod"
+        #- "+x"
+        #- "/tests/runner.sh"
+        - "-c"
+        - "/tests/runner.sh"
+      #script: |
+        #!/bin/sh
+       # pwd
+        #ls
+        #chmod +x /tests/runner.sh
+        #sh /tests/runner.sh

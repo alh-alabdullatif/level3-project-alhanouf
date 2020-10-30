@@ -1,0 +1,111 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: q-master-pipeline
+spec:
+  workspaces:
+  - name: shared-workspace
+  params:
+  - name: image
+    description: req-masterrence of the image to build
+  - name: name-space-test
+    description: req-masterrence of test namespace
+  - name: name-space-prod
+    description: req-masterrence of prod namespace
+  tasks:
+  - name: q-mastertch-repository
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-workspace
+    params:
+    - name: url
+      value: https://github.com/alh-alabdullatif/level3-project-alhanouf.git 
+    - name: subdirectory
+      value: ""
+    - name: deleteExisting
+      value: "true"
+  - name: q-master-build-task
+    taskRef:
+      name: q-master-build-task
+    runAfter:
+    - q-mastertch-repository
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: IMAGE
+      value: $(params.image)
+    - name: EXTRA_ARGS
+      value: "--skip-tls-verify"
+  - name: q-master-deploy-test-task
+    taskRef:
+     name: q-master-deploy-task
+    runAfter:
+    - q-master-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space-test)
+  - name: test-task
+    taskRef:
+     name: test-task
+    runAfter:
+    - q-master-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+  - name: all-deploy-task
+    taskRef:
+      name: all-deploy-task
+    runAfter:
+    - test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space-prod)
+  - name: verify-digest
+    runAfter:
+    - q-master-build-task
+    params:
+    - name: digest
+      value: $(tasks.q-master-build-task.results.IMAGE-DIGEST)
+    taskSpec:
+      params:
+      - name: digest
+      steps:
+      - name: bash
+        image: ubuntu
+        script: |
+          echo $(params.digest)
+          case .$(params.digest) in
+            ".sha"*) exit 0 ;;
+            *)       echo "Digest value is not correct" && exit 1 ;;
+          esac
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: q-master-pipeline-run
+spec:
+  serviceAccountName: alhanouf-sec
+  pipelineRef:
+    name: q-master-pipeline
+  params:
+  - name: image
+    value: alhanouf1/q-master-build
+  - name: name-space-test
+    value: test
+  - name: name-space-prod
+    value: prod
+  workspaces:
+  - name: shared-workspace
+    persistentvolumeclaim:
+      claimName: kaniko-source-pvc
+

@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: fe-deploy-task
+spec:
+  params:
+  - name: name-space
+    description: name to namespace for depolyment
+  workspaces:
+  - name: source
+  # Step to create Knative Service from YAML file using kubectl.
+  steps:
+    - name: debug
+      image: ubuntu
+      script: |
+        #!/usr/bin/env bash
+        pwd
+        ls -gAhF
+        echo "-----------"
+        ls -gAhf source/
+
+    - name: kubectl
+      #workingDir: $(workspaces.source)
+      image: "bitnami/kubectl"
+      command: ["kubectl"]
+      args: ["apply", "-f", "source/tekton/test-deploy/front-end-dep.yaml","-f","source/tekton/test-deploy/front-end-svc.yaml","-n","$(params.name-space)"]

@@ -1,0 +1,111 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pay-pipeline
+spec:
+  workspaces:
+  - name: shared-workspace
+  params:
+  - name: image
+    description: reference of the image to build
+  - name: name-space-test
+    description: reference of test namespace
+  - name: name-space-prod
+    description: reference of prod namespace
+  tasks:
+  - name: fetch-repository
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-workspace
+    params:
+    - name: url
+      value: https://github.com/alh-alabdullatif/level3-project-alhanouf.git 
+    - name: subdirectory
+      value: ""
+    - name: deleteExisting
+      value: "true"
+  - name: pay-build-task
+    taskRef:
+      name: pay-build-task
+    runAfter:
+    - fetch-repository
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: IMAGE
+      value: $(params.image)
+    - name: EXTRA_ARGS
+      value: "--skip-tls-verify"
+  - name: pay-deploy-test-task
+    taskRef:
+      name: pay-deploy-task
+    runAfter:
+    - pay-build-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space-test)
+  - name: test-task
+    taskRef:
+      name: test-task
+    runAfter:
+    - pay-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+  - name: all-deploy-task
+    taskRef:
+      name: all-deploy-task
+    runAfter:
+    - test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: name-space
+      value: $(params.name-space-prod)
+  - name: verify-digest
+    runAfter:
+    - pay-deploy-test-task
+    params:
+    - name: digest
+      value: $(tasks.pay-build-task.results.IMAGE-DIGEST)
+    taskSpec:
+      params:
+      - name: digest
+      steps:
+      - name: bash
+        image: ubuntu
+        script: |
+          echo $(params.digest)
+          case .$(params.digest) in
+            ".sha"*) exit 0 ;;
+            *)       echo "Digest value is not correct" && exit 1 ;;
+          esac
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: pay-pipeline-run
+spec:
+  serviceAccountName: alhanouf-sec
+  pipelineRef:
+    name: pay-pipeline
+  params:
+  - name: image
+    value: alhanouf1/payment-build
+  - name: name-space-test
+    value: test
+  - name: name-space-prod
+    value: prod
+  workspaces:
+  - name: shared-workspace
+    persistentvolumeclaim:
+      claimName: kaniko-source-pvc
+
