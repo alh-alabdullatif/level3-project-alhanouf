@@ -96,7 +96,7 @@ Wed End 28-10
 Thu Start 29-10
 ![Thu 10-29](assets/Thu-start-2020-10-29.png)
 Thu End 29-10
-![Thu 10-29](assets/Thu-end-2020-10-29.png)
+![Thu 10-29](assets/Thu-end020-10-29.png)
 Fri Start 30-10
 ![Fri 10-30](assets/Fri-start-2020-10-30.png)
 Fri End 30-10
