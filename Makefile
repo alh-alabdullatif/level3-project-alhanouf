@@ -1,15 +1,20 @@
-.PHONY: up roles-create docker-login docker-sec cart cart-delete cart-logs catalouge catalouge-delete catalouge-logs front-end front-end-delete front-end-logs orders orders-delete orders-logs payment payment-delete payment-logs q-master q-master-delete q-master-logs shipping shipping-delete shipping-logs user user-delete user-logs delete-sec
+.PHONY: up roles-create docker-login docker-sec cart cart-delete cart-logs catalouge catalouge-delete catalouge-logs front-end front-end-delete front-end-logs orders orders-delete orders-logs payment payment-delete payment-logs q-master q-master-delete q-master-logs shipping shipping-delete shipping-logs user user-delete user-logs delete-sec delete-pipeline-runs delete-all-test delete-all-pro
 
 
 up: roles-create docker-sec cart cart-logs catalouge catalouge-logs front-end front-end-logs orders orders-logs	payment payment-logs q-master q-master-logs shipping shipping-logs user user-logs
 
-down: roles-delete delete-docker-sec cart-delete catalouge-delete catalouge front-end-delete orders-delete payment-delete q-master-delete shipping-delete  user-delete
+down: roles-delete delete-docker-sec cart-delete catalouge-delete catalouge front-end-delete orders-delete payment-delete q-master-delete shipping-delete  user-delete delete-pipeline-runs delete-all-test delete-all-prod 
 
 roles-create:
 	 kubectl apply -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f tekton/kaniko/kaniko-source-pvc.yaml -f tekton/kaniko/git-clone-task.yaml -n test
 roles-delete:
-	kubectl delete -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f tekton/kaniko/kaniko-source-pvc.yaml -f tekton/kaniko/git-clone-task.yaml -n test
+	kubectl delete -f tekton/sa.yaml -f tekton/clusterrole.yaml -f tekton/clusterrolebinding.yaml -f tekton/kaniko/kaniko-source-pvc.yaml -n test
 
+git-clone-apply:
+	 kubectl apply -f tekton/kaniko/git-clone-task.yaml -n test
+
+git-clone-delete:
+	kubectl delete -f tekton/kaniko/git-clone-task.yaml -n test
 docker-login:
 	 sudo source tekton/docker-login.sh
 docker-sec:
