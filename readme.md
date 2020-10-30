@@ -7,10 +7,10 @@ We are demonstrating a near production-ready K8S platform hosting the Weaveworks
 ## Directories 
 Each micro-service has it's own repo - there we have Dockerfile that will be used to build and run the images to docker hub
 
-Tekton 
+### Tekton 
 - Contains clusterrole - clusterrole binding - service account
 
-## Subdiectories
+### Subdiectories
 - Pipelines (*has the pipelines*)
 - kaniko (*has build tasks*)
 - test-deploy (*has all service and deployment files for the micro-services*)
@@ -28,7 +28,7 @@ Tekton
 ## Notes
 Pipelines will run and perform the build and push image to dockerhub task , they will fail because not all services are running + we will have to run them again to do that do the following:
 
-- while in the main directory 
+while in the main directory 
 - make delete-pipeline-run 
 - make delete-docker-sec
 - make up
