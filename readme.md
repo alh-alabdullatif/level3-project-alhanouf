@@ -31,7 +31,7 @@ Pipelines will run and perform the build and push image to dockerhub task , they
 while in the main directory 
 - make delete-pipeline-run 
 - make delete-docker-sec
-- make up
+- make up 
 
 ## Pipelines structure 
 
