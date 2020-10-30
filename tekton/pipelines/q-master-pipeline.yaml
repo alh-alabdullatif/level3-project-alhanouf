@@ -51,11 +51,19 @@ spec:
     params:
     - name: name-space
       value: $(params.name-space-test)
+  - name: test-task
+    taskRef:
+      name: test-task
+   runAfter:
+   - q-master-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
   - name: q-master-deploy-prod-task
     taskRef:
       name: q-master-deploy-task
     runAfter:
-    - q-master-deploy-test-task
+    - test-task
     workspaces:
     - name: source
       workspace: shared-workspace

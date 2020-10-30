@@ -51,11 +51,19 @@ spec:
     params:
     - name: name-space
       value: $(params.name-space-test)
+  - name: test-task
+    taskRef:
+      name: test-task
+    runAfter:
+    - cart-deploy-test-task
+    workspaces:
+    - name: source
+      workspace: shared-workspace
   - name: cart-deploy-prod-task
     taskRef:
       name: carts-deploy-task
     runAfter:
-    - cart-deploy-test-task
+    - test-task
     workspaces:
     - name: source
       workspace: shared-workspace
