@@ -18,16 +18,16 @@ delete-docker-sec:
 	kubectl delete secret docker-seceret -n test
 
 cart:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/cart-pipeline.yaml -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/cart-pipeline.yaml -n test
 cart-delete:
-	kubectl delete -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml  -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/cart-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/cart-build-task.yaml -f tekton/test-deploy/deploy/carts-deploy-task.yaml  -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/cart-pipeline.yaml -n test
 cart-logs:
 	 tkn pr logs -f cart-pipeline-run -n test
 catalouge:
-	 kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/cat-build-task.yaml -f tekton/kaniko/cat-db-build-task.yaml -f tekton/test-deploy/deploy/cat-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/cat-pipeline.yaml -n test
+	 kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/cat-build-task.yaml -f tekton/kaniko/cat-db-build-task.yaml -f tekton/test-deploy/deploy/cat-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/cat-pipeline.yaml -n test
 
 catalouge-delete:
-	kubectl delete -f tekton/kaniko/cat-build-task.yaml -f tekton/kaniko/cat-db-build-task.yaml -f tekton/test-deploy/deploy/cat-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/cat-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/cat-build-task.yaml -f tekton/kaniko/cat-db-build-task.yaml -f tekton/test-deploy/deploy/cat-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/cat-pipeline.yaml -n test
 catalouge-logs:
 	tkn pr logs -f cat-pipeline-run -n test
 
@@ -38,38 +38,38 @@ front-end-delete:
 front-end-logs:
 	tkn pr logs -f fe-pipeline-run -n test
 orders:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/ord-build-task.yaml -f tekton/test-deploy/deploy/ord-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/ord-pipeline.yaml -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/ord-build-task.yaml -f tekton/test-deploy/deploy/ord-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/ord-pipeline.yaml -n test
 
 orders-delete:
-	kubectl delete -f tekton/kaniko/ord-build-task.yaml -f tekton/test-deploy/deploy/ord-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/ord-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/ord-build-task.yaml -f tekton/test-deploy/deploy/ord-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/ord-pipeline.yaml -n test
 orders-logs:
 	tkn pr logs -f ord-pipeline-run -n test
 
 payment:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/pay-build-task.yaml -f tekton/test-deploy/deploy/pay-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/pay-pipeline.yaml  -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/pay-build-task.yaml -f tekton/test-deploy/deploy/pay-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/pay-pipeline.yaml  -n test
 payment-delete:
-	kubectl delete -f tekton/kaniko/pay-build-task.yaml -f tekton/test-deploy/deploy/pay-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/pay-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/pay-build-task.yaml -f tekton/test-deploy/deploy/pay-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/pay-pipeline.yaml -n test
 payment-logs:
 	tkn pr logs -f pay-pipeline-run -n test
 
 q-master:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/q-master-build-task.yaml -f tekton/test-deploy/deploy/q-master-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/q-master-pipeline.yaml -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/q-master-build-task.yaml -f tekton/test-deploy/deploy/q-master-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/q-master-pipeline.yaml -n test
 
 q-master-delete:
-	kubectl delete -f tekton/kaniko/q-master-build-task.yaml -f tekton/test-deploy/deploy/q-master-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/q-master-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/q-master-build-task.yaml -f tekton/test-deploy/deploy/q-master-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/q-master-pipeline.yaml -n test
 
 q-master-logs:
 	tkn pr logs -f q-master-pipeline-run -n test
 
 shipping:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/shipping-build-task.yaml -f tekton/test-deploy/deploy/shipping-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/shipping-pipeline.yaml -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/shipping-build-task.yaml -f tekton/test-deploy/deploy/shipping-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/shipping-pipeline.yaml -n test
 shipping-delete:
-	kubectl delete -f tekton/kaniko/shipping-build-task.yaml -f tekton/test-deploy/deploy/shipping-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/shipping-pipeline.yaml -n test
+	kubectl delete -f tekton/kaniko/shipping-build-task.yaml -f tekton/test-deploy/deploy/shipping-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/shipping-pipeline.yaml -n test
 
 shipping-logs:
 	tkn pr logs -f shipping-pipeline-run -n test
 user:
-	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/user-db-build-task.yaml -f tekton/kaniko/user-build-task.yaml -f tekton/test-deploy/deploy/user-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/user-pipeline.yaml -n test
+	kubectl apply -f tekton/kaniko/git-clone-task.yaml -f tekton/kaniko/user-db-build-task.yaml -f tekton/kaniko/user-build-task.yaml -f tekton/test-deploy/deploy/user-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/test-deploy/deploy/all-deploy-task.yaml -f tekton/pipelines/user-pipeline.yaml -n test
 
 user-delete:
 	kubectl delete -f tekton/kaniko/user-db-build-task.yaml -f tekton/kaniko/user-build-task.yaml -f tekton/test-deploy/deploy/user-deploy-task.yaml -f tekton/test-deploy/test/test-task.yaml -f tekton/pipelines/user-pipeline.yaml -n test
