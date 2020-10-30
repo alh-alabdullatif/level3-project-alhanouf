@@ -59,9 +59,9 @@ spec:
     workspaces:
     - name: source
       workspace: shared-workspace
-  - name: q-master-deploy-prod-task
+  - name: all-deploy-task
     taskRef:
-      name: q-master-deploy-task
+      name: all-deploy-task
     runAfter:
     - test-task
     workspaces:

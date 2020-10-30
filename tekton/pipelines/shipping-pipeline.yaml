@@ -59,9 +59,9 @@ spec:
     workspaces:
     - name: source
       workspace: shared-workspace
-  - name: shipping-deploy-prod-task
+  - name: all-deploy-task
     taskRef:
-      name: shipping-deploy-task
+      name: all-deploy-task
     runAfter:
     - test-task
     workspaces:
