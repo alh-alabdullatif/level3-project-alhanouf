@@ -21,8 +21,7 @@ Each micro-service has it's own repo - there we have Dockerfile that will be use
 1 - Go to K8s-sandbox make up (to bring up k8s and needed tools)
 
 2 - Go back to the main directory (*level3-project-alhanouf*)
-3 - docker login -u username
-	enter your password
+3 - docker login -u username (*enter your password*)
 4 - make up
 
 ## Notes
