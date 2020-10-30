@@ -87,5 +87,3 @@ spec:
       image: "bitnami/kubectl"
       command: ["kubectl"]
       args: ["apply", "-f", "source/tekton/test-deploy/user-dep.yaml","-f","source/tekton/test-deploy/user-svc.yaml","-n","$(params.name-space)"]
-~                                                                     
-~                                                                          
