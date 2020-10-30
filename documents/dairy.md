@@ -39,8 +39,8 @@ Sat  17-10
 Sun  18-10
 - continue to work on building the images using Pipeline Resources \
 Mon  19-10
-had the same error for muliple days invalid input resource turns out using the alpha version \
-switched to beta and used git-clone task instead of using PipelineResource which is deprecated \
+- had the same error for muliple days invalid input resource turns out using the alpha version \
+- switched to beta and used git-clone task instead of using PipelineResource which is deprecated \
 
 Tue  20-10
 - started working on build & push tasks for every microservic and db \
@@ -49,27 +49,27 @@ Wed  21-10
 Thu  22-10
 - working on deployment tasks of the svc and dep \
 Fri  23-10
-- working o db deplyment tasks \
+- working o db deplyment tasks 
 Sat  24-10
 - working on tasks deploying sav,dep to test and prod namespaces by passing parameters to tasks and pipeline runs \
-- learn about workspaces in tekton \
+- learn about workspaces in tekton 
 Sun  25-10
-- Continue working on tasks \ 
+- Continue working on tasks 
 Mon  26-10
 - Continue working on deployment tasks
--Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff \
-- fix: working on catalouge \
+- Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff 
+- fix: working on catalouge 
 Tue  27-10
--Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff \
--Fix: reused the jre images by waveworks in the Dockerfile \
-- Started working on the test task \
+- Problem: the images catalouge shipping q-master had errors while running CrashLoopBackOff 
+- Fix: reused the jre images by waveworks in the Dockerfile 
+- Started working on the test task 
 Wed  28-10
-Countiue working on the test task \
+- Countiue working on the test task 
 Thu 29-10
--Countiue working on the test task \
-- added pro-graf and elf  \
+- Countiue working on the test task 
+- added pro-graf and elf  
 Fri  30-10
-- configure pro-graf and elf \
+- configure pro-graf and elf 
 - add deployment tasks to all pipelines 
 - create readme 
 
