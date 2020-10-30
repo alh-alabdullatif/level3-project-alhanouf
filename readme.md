@@ -22,7 +22,7 @@ Each micro-service has it's own repo - there we have Dockerfile that will be use
 
 2 - Go back to the main directory (*level3-project-alhanouf*)
 3 - docker login -u username
-        enter your password
+	enter your password
 4 - make up
 
 ## Notes
@@ -42,7 +42,7 @@ each micro-services has its own pipeline each will have 4 Tekton tasks except us
 4 - deplying the micro-services to prod name-space
 
 ## Dashboards
-can be found in k8s-sandbox under json-dashboard folder
+- Can be found in k8s-sandbox under json-dashboard folder
 ## More
 
 - The tools can be accessed via Nodeport
