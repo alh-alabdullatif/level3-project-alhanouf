@@ -70,6 +70,6 @@ Thu 29-10
 - added pro-graf and elf  \
 Fri  30-10
 - configure pro-graf and elf \
-- add deployment tasks to all pipelines \
-- create readme \
+- add deployment tasks to all pipelines 
+- create readme 
 
