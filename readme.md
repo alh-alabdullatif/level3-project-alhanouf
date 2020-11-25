@@ -4,6 +4,12 @@
 
 We are demonstrating a near production-ready K8S platform hosting the Weaveworks Shock Shop demo. using kubernetes - Tekton - elf - prometheus and grafana
 
+## Overall Structure of the project
+![Structure](documents/assets/piplines_with_logo.png)
+
+## Architecture of Sock Shop
+![sockshop](documents/assets/Architecture.png)
+
 ## Directories 
 Each micro-service has it's own repo - there we have Dockerfile that will be used to build and run the images to docker hub
 
@@ -40,13 +46,26 @@ Each micro-services has its own pipeline each will have 4 Tekton tasks except us
 - running the tests
 - deplying the micro-services to prod name-space
 
+### Pipeline runs 
+![pr](documents/assets/pipelines_succ_run.png)
+
+### Tests passing
+![tests](documents/assets/running_tests.png)
+
 ## Logging & monitoring 
 - elf is in the logging namespace
 - pro graf is in the monitor namespace 
+
+### Logs 
+![logs1](documents/assets/logs1.png)
+![logs2](documents/assets/logs2.png)
+
 ## Dashboards
 ![dashboard](documents/assets/resources-dashboard.png)
 - Can be found in k8s-sandbox under json-dashboard folder
 - To use them upload them into grafana
+
+
 ## More
  
 - The tools can be accessed via Nodeport
