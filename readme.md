@@ -61,6 +61,7 @@ Each micro-services has its own pipeline each will have 4 Tekton tasks except us
 ![logs2](documents/assets/logs2.png)
 
 ## Dashboards
+Dashboard showing the compute resources of the pods
 ![dashboard](documents/assets/resources-dashboard.png)
 - Can be found in k8s-sandbox under json-dashboard folder
 - To use them upload them into grafana
